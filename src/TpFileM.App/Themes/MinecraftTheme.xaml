@@ -40,7 +40,7 @@
 
     <Style TargetType="Window">
         <Setter Property="Background" Value="{StaticResource McTileConcreteLight}"/>
-        <Setter Property="FontFamily" Value="{StaticResource PixelFont}"/>
+        <Setter Property="FontFamily" Value="{DynamicResource PixelFont}"/>
         <Setter Property="FontSize" Value="19"/>
         <Setter Property="Foreground" Value="#1A1A1A"/>
         <Setter Property="RenderOptions.BitmapScalingMode" Value="NearestNeighbor"/>
@@ -55,7 +55,7 @@
     </Style>
 
     <Style x:Key="McHeaderTitle" TargetType="TextBlock">
-        <Setter Property="FontFamily" Value="{StaticResource PixelFont}"/>
+        <Setter Property="FontFamily" Value="{DynamicResource PixelFont}"/>
         <Setter Property="FontSize" Value="27"/>
         <Setter Property="FontWeight" Value="Black"/>
         <Setter Property="Foreground" Value="White"/>
@@ -72,7 +72,7 @@
     </Style>
 
     <Style x:Key="McWhitePixelText" TargetType="TextBlock">
-        <Setter Property="FontFamily" Value="{StaticResource PixelFont}"/>
+        <Setter Property="FontFamily" Value="{DynamicResource PixelFont}"/>
         <Setter Property="FontWeight" Value="Bold"/>
         <Setter Property="Foreground" Value="#FFFFFF"/>
         <Setter Property="TextOptions.TextFormattingMode" Value="Display"/>
@@ -88,7 +88,7 @@
     </Style>
 
     <Style x:Key="McFieldLabel" TargetType="TextBlock">
-        <Setter Property="FontFamily" Value="{StaticResource PixelFont}"/>
+        <Setter Property="FontFamily" Value="{DynamicResource PixelFont}"/>
         <Setter Property="FontSize" Value="19"/>
         <Setter Property="FontWeight" Value="Bold"/>
         <Setter Property="Foreground" Value="#1A1A1A"/>
@@ -97,7 +97,7 @@
     </Style>
 
     <Style TargetType="TextBlock">
-        <Setter Property="FontFamily" Value="{StaticResource PixelFont}"/>
+        <Setter Property="FontFamily" Value="{DynamicResource PixelFont}"/>
         <Setter Property="Foreground" Value="#1A1A1A"/>
         <Setter Property="VerticalAlignment" Value="Center"/>
     </Style>
@@ -109,7 +109,7 @@
     </Style>
 
     <Style x:Key="McDataField" TargetType="TextBox">
-        <Setter Property="FontFamily" Value="{StaticResource PixelFont}"/>
+        <Setter Property="FontFamily" Value="{DynamicResource PixelFont}"/>
         <Setter Property="FontSize" Value="20"/>
         <Setter Property="Foreground" Value="#E8E8E8"/>
         <Setter Property="Background" Value="{StaticResource McTileConcreteDark}"/>
@@ -129,7 +129,7 @@
     <Style TargetType="TextBox" BasedOn="{StaticResource McDataField}"/>
 
     <Style x:Key="McStoneButton" TargetType="Button">
-        <Setter Property="FontFamily" Value="{StaticResource PixelFont}"/>
+        <Setter Property="FontFamily" Value="{DynamicResource PixelFont}"/>
         <Setter Property="FontSize" Value="19"/>
         <Setter Property="FontWeight" Value="Bold"/>
         <Setter Property="Foreground" Value="#FFFFFF"/>
@@ -197,7 +197,7 @@
     <Style TargetType="Button" BasedOn="{StaticResource McStoneButton}"/>
 
     <Style x:Key="McKeyModeCombo" TargetType="ComboBox">
-        <Setter Property="FontFamily" Value="{StaticResource PixelFont}"/>
+        <Setter Property="FontFamily" Value="{DynamicResource PixelFont}"/>
         <Setter Property="FontSize" Value="19"/>
         <Setter Property="FontWeight" Value="Bold"/>
         <Setter Property="Foreground" Value="White"/>
@@ -283,7 +283,7 @@
     <Style TargetType="ComboBox" BasedOn="{StaticResource McKeyModeCombo}"/>
 
     <Style TargetType="ComboBoxItem">
-        <Setter Property="FontFamily" Value="{StaticResource PixelFont}"/>
+        <Setter Property="FontFamily" Value="{DynamicResource PixelFont}"/>
         <Setter Property="FontSize" Value="19"/>
         <Setter Property="FontWeight" Value="Bold"/>
         <Setter Property="Foreground" Value="White"/>
@@ -338,7 +338,7 @@
                             MaxWidth="400"
                             SnapsToDevicePixels="True">
                         <TextBlock Text="{TemplateBinding Content}"
-                                   FontFamily="{StaticResource PixelFont}"
+                                   FontFamily="{DynamicResource PixelFont}"
                                    FontSize="19"
                                    FontWeight="Bold"
                                    Foreground="#FFFFFF"

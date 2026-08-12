@@ -33,6 +33,58 @@ public partial class SettingsWindow : Window
 
         McpExeBox.Text = _settings.ResolveMcpExePath();
         RefreshMcpJson();
+
+        // Font initialization
+        if (_settings.UseSystemFont)
+        {
+            FontCombo.SelectedIndex = 1;
+        }
+        else if (!string.IsNullOrWhiteSpace(_settings.CustomFontPath))
+        {
+            FontCombo.SelectedIndex = 2;
+        }
+        else
+        {
+            FontCombo.SelectedIndex = 0;
+        }
+    }
+
+    private void FontCombo_OnSelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
+    {
+        if (FontBrowseButton == null) return;
+
+        FontBrowseButton.Visibility = FontCombo.SelectedIndex == 2 ? Visibility.Visible : Visibility.Collapsed;
+
+        if (FontCombo.SelectedIndex == 0) // Monocraft
+        {
+            _settings.UseSystemFont = false;
+            _settings.CustomFontPath = null;
+        }
+        else if (FontCombo.SelectedIndex == 1) // System
+        {
+            _settings.UseSystemFont = true;
+            _settings.CustomFontPath = null;
+        }
+        
+        _settings.Save();
+        ((App)Application.Current).ApplyFontSettings();
+    }
+
+    private void FontBrowse_Click(object sender, RoutedEventArgs e)
+    {
+        var dialog = new OpenFileDialog
+        {
+            Filter = "Font Files (*.ttf;*.ttc;*.otf)|*.ttf;*.ttc;*.otf|All files (*.*)|*.*",
+            Title = "Select Custom Font",
+        };
+
+        if (dialog.ShowDialog() == true)
+        {
+            _settings.UseSystemFont = false;
+            _settings.CustomFontPath = dialog.FileName;
+            _settings.Save();
+            ((App)Application.Current).ApplyFontSettings();
+        }
     }
 
     private void RefreshMcpJson()

@@ -21,22 +21,35 @@
     <SelfContained>true</SelfContained>
     <!-- ponyytail: single-file breaks WPF embedded string resources at startup -->
     <PublishSingleFile>false</PublishSingleFile>
+    <StartupObject>TpFileM.App.Program</StartupObject>
   </PropertyGroup>
 
   <ItemGroup>
+    <ApplicationDefinition Remove="App.xaml" />
+    <Page Include="App.xaml" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Content Include="Assets\logo.ico">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
     </Content>
     <Resource Include="Assets\Fonts\Monocraft.ttf" />
     <Content Include="Assets\Fonts\Monocraft.ttf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
     </Content>
     <Resource Include="Assets\Textures\*.png" />
     <Content Include="Assets\Textures\*.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
     </Content>
     <EmbeddedResource Include="Assets\strings-en.json" />
     <EmbeddedResource Include="Assets\strings-zh-TW.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Velopack" Version="1.2.0" />
   </ItemGroup>
 
 </Project>

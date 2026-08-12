@@ -7,6 +7,8 @@ public sealed class AppSettings
 {
     public string Language { get; set; } = "en";
     public string? McpExePath { get; set; }
+    public bool UseSystemFont { get; set; } = false;
+    public string? CustomFontPath { get; set; }
 
     private static string SettingsPath =>
         Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "TpFileM", "settings.json");
