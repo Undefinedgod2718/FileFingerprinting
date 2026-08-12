@@ -40,6 +40,16 @@
   "Settings_McpTestOk": "MCP smoke test passed.",
   "Settings_McpTestFail": "MCP smoke test failed: {0}",
   "Settings_McpBrowse": "Browse…",
+  "Settings_Update": "Software Update",
+  "Button_CheckUpdate": "Check for Updates",
+  "Update_Checking": "Checking for updates...",
+  "Update_DevMode": "Update not available in development mode.",
+  "Update_UpToDate": "You are on the latest version.",
+  "Update_Downloading": "Downloading update...",
+  "Update_ReadyToRestart": "Download complete. Ready to apply.",
+  "Update_RestartMsg": "A new version has been downloaded. Do you want to restart the application now to apply it?",
+  "Update_RestartTitle": "Update Ready",
+  "Update_Error": "Update failed: {0}",
   "Lang_en": "English",
   "Lang_zh-TW": "Traditional Chinese"
 }

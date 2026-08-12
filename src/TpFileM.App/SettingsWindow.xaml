@@ -16,6 +16,7 @@
             <RowDefinition Height="*"/>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="Auto" MinWidth="140"/>
@@ -54,15 +55,29 @@
                  AcceptsReturn="True" TextWrapping="Wrap" VerticalScrollBarVisibility="Auto"
                  IsReadOnly="True" FontSize="16"/>
 
-        <StackPanel Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="3" Orientation="Horizontal" Margin="0,12,0,0">
+        <!-- Software Update Row -->
+        <Grid Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="3" Margin="0,16,0,0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" MinWidth="140"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            <TextBlock x:Name="UpdateLabel" Grid.Column="0" VerticalAlignment="Center" 
+                       Style="{StaticResource McFieldLabel}"/>
+            <TextBlock x:Name="UpdateStatusText" Grid.Column="1" VerticalAlignment="Center" 
+                       Style="{StaticResource McStatusText}" Foreground="{StaticResource McTileEmerald}"/>
+            <Button x:Name="CheckUpdateButton" Grid.Column="2" MinWidth="90" Click="CheckUpdate_Click"/>
+        </Grid>
+
+        <StackPanel Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="3" Orientation="Horizontal" Margin="0,12,0,0">
             <Button x:Name="CopyMcpJsonButton" Margin="0,0,8,0" Click="CopyMcpJson_Click"/>
             <Button x:Name="TestMcpButton" Click="TestMcp_Click"/>
         </StackPanel>
 
-        <TextBlock x:Name="SettingsStatusText" Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="3"
+        <TextBlock x:Name="SettingsStatusText" Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="3"
                    Margin="0,12,0,0" TextWrapping="Wrap" Style="{StaticResource McStatusText}"/>
 
-        <StackPanel Grid.Row="5" Grid.Column="2" Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,12,0,0">
+        <StackPanel Grid.Row="6" Grid.Column="2" Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,12,0,0">
             <Button x:Name="CloseButton" MinWidth="90" Click="CloseButton_Click"/>
         </StackPanel>
     </Grid>

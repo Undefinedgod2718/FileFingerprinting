@@ -67,14 +67,20 @@ public partial class App : Application
     {
         try
         {
-            _ = new FontFamily("pack://application:,,,/Assets/Fonts/#Monocraft");
-            Resources["PixelFont"] = new FontFamily("pack://application:,,,/Assets/Fonts/#Monocraft");
-            return true;
+            var path = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Assets", "Fonts", "Monocraft.ttf");
+            if (File.Exists(path))
+            {
+                var families = Fonts.GetFontFamilies(path);
+                var family = System.Linq.Enumerable.FirstOrDefault(families);
+                if (family != null)
+                {
+                    Resources["PixelFont"] = family;
+                    return true;
+                }
+            }
         }
-        catch
-        {
-            return false;
-        }
+        catch { }
+        return false;
     }
 
     private async Task CheckForUpdatesAsync()

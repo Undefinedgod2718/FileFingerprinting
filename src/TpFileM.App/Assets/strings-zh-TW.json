@@ -40,6 +40,16 @@
   "Settings_McpTestOk": "MCP 煙霧測試通過。",
   "Settings_McpTestFail": "MCP 煙霧測試失敗：{0}",
   "Settings_McpBrowse": "瀏覽…",
+  "Settings_Update": "軟體更新",
+  "Button_CheckUpdate": "檢查更新",
+  "Update_Checking": "正在檢查更新...",
+  "Update_DevMode": "開發環境無法自動更新。",
+  "Update_UpToDate": "目前已是最新版本。",
+  "Update_Downloading": "正在下載更新...",
+  "Update_ReadyToRestart": "下載完成，隨時可套用。",
+  "Update_RestartMsg": "新版本已下載完成，是否立即重新啟動應用程式以套用更新？",
+  "Update_RestartTitle": "更新準備就緒",
+  "Update_Error": "更新失敗：{0}",
   "Lang_en": "English",
   "Lang_zh-TW": "繁體中文"
 }

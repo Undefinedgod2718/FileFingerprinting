@@ -105,6 +105,57 @@ public partial class SettingsWindow : Window
         CopyMcpJsonButton.Content = Loc.Get("Button_CopyMcpJson");
         TestMcpButton.Content = Loc.Get("Button_TestMcp");
         CloseButton.Content = Loc.Get("Button_Close");
+        UpdateLabel.Text = Loc.Get("Settings_Update");
+        CheckUpdateButton.Content = Loc.Get("Button_CheckUpdate");
+    }
+
+    private async void CheckUpdate_Click(object sender, RoutedEventArgs e)
+    {
+        CheckUpdateButton.IsEnabled = false;
+        UpdateStatusText.Text = Loc.Get("Update_Checking");
+        
+        try
+        {
+            var mgr = new Velopack.UpdateManager(new Velopack.Sources.GithubSource("https://github.com/Undefinedgod2718/FileFingerprinting", "", false));
+            if (!mgr.IsInstalled)
+            {
+                UpdateStatusText.Text = Loc.Get("Update_DevMode");
+                return;
+            }
+
+            var newVersion = await mgr.CheckForUpdatesAsync();
+            if (newVersion == null)
+            {
+                UpdateStatusText.Text = Loc.Get("Update_UpToDate");
+                return;
+            }
+
+            UpdateStatusText.Text = Loc.Get("Update_Downloading");
+            
+            await mgr.DownloadUpdatesAsync(newVersion, (progress) => 
+            {
+                Dispatcher.Invoke(() => 
+                {
+                    UpdateStatusText.Text = $"{Loc.Get("Update_Downloading")} ({progress}%)";
+                });
+            });
+
+            UpdateStatusText.Text = Loc.Get("Update_ReadyToRestart");
+            
+            var result = MessageBox.Show(Loc.Get("Update_RestartMsg"), Loc.Get("Update_RestartTitle"), MessageBoxButton.YesNo, MessageBoxImage.Information);
+            if (result == MessageBoxResult.Yes)
+            {
+                mgr.ApplyUpdatesAndRestart(newVersion);
+            }
+        }
+        catch (Exception ex)
+        {
+            UpdateStatusText.Text = Loc.Format("Update_Error", ex.Message);
+        }
+        finally
+        {
+            CheckUpdateButton.IsEnabled = true;
+        }
     }
 
     private void LanguageCombo_OnSelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
