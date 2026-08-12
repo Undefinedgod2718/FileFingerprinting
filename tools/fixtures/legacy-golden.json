@@ -1,0 +1,36 @@
+{
+  "source": "Delta TPFileM.exe GUI capture 2026-07-06 / Unicorn oracle 2026-07-07",
+  "vectors": [
+    {
+      "file": "empty.bin",
+      "crc": "00000000",
+      "sha": "241DEE2C 252BF5C0 6A31228F 06EA7320 0511F520",
+      "note": "GUI + native CLI verified"
+    },
+    {
+      "file": "digits.bin",
+      "crc": "CBF43926",
+      "sha": "67972355 BD7D1290 86D9DB6B FB4F59C8 C3CEDDAD",
+      "note": "GUI verified 2026-07-06 screenshot"
+    },
+    {
+      "file": "test.bin",
+      "crc": "D87F7E0C",
+      "sha": "0E6AD8B3 B29925F7 93802DA5 09E31588 4DB93485",
+      "note": "native CLI + unicorn oracle"
+    },
+    {
+      "file": "seq16.bin",
+      "crc": "CECEE288",
+      "sha": "8CC3A456 BCED0FFD 87F17B4A 2F2F4A0D BB8A968F",
+      "note": "native CLI + unicorn oracle"
+    },
+    {
+      "file": "0x100216 PLC offline trouble shooting.docx",
+      "path": "D:/Docs/test report/0x100216 PLC offline trouble shooting.docx",
+      "crc": "A25E39C9",
+      "sha": "BB741E73 A3136085 49B3225A C5F9B80B E0287945",
+      "note": "GUI verified; optional local path"
+    }
+  ]
+}

@@ -1,0 +1,257 @@
+push sites referencing key strings:
+  file=0x13B1 va=0x4013B1 -> 0x41D0B0 "Step #1: Please select a file or drag and drop."
+  file=0x1918 va=0x401918 -> 0x41D0FC "Step #2: Press Generate Key button."
+  file=0x19E5 va=0x4019E5 -> 0x41D148 "CRC Counting .."
+  file=0x1AC8 va=0x401AC8 -> 0x41D148 "CRC Counting .."
+  file=0x1BDE va=0x401BDE -> 0x41D0FC "Step #2: Press Generate Key button."
+  file=0x1C74 va=0x401C74 -> 0x41D160 "Step #1: File name Error! Please select a correct file or dr"
+  file=0x1CA9 va=0x401CA9 -> 0x41D158 "%08X"
+  file=0x2085 va=0x402085 -> 0x41D1AC "SHA Counting .."
+  file=0x214C va=0x40214C -> 0x41D1AC "SHA Counting .."
+  file=0x21C1 va=0x4021C1 -> 0x41D1BC "%08X %08X %08X %08X %08X"
+  file=0x2246 va=0x402246 -> 0x41D228 "Step #1: File name Error in SHA! Please select a correct fil"
+  file=0x226D va=0x40226D -> 0x41D1D8 "OK! Keys are generated! Please select another file or drag a"
+  file=0x6BB0 va=0x406BB0 -> 0x418E74 "Runtime Error!
+
+Program: "
+
+=== Functions with 0xEDB88320 or bit-test loops near poly ===
+0x004016C1: in       al, dx
+0x004016C2: push     esi
+0x004016C4: mov      esi, ecx
+0x004016C6: mov      eax, dword ptr [esi + 0x1c]
+0x004016C9: push     eax
+0x004016CA: call     dword ptr [0x4173bc]
+0x004016D0: test     eax, eax
+0x004016D2: je       0x40176a
+0x004016D8: push     ebx
+0x004016D9: push     edi
+0x004016DA: push     esi
+0x004016DB: lea      ecx, [esp + 0x20]
+0x004016DF: call     0x4139eb
+0x004016E4: mov      edi, dword ptr [esp + 0x20]
+0x004016E8: lea      eax, [esp + 0x1c]
+0x004016EC: mov      ecx, dword ptr [esi + 0x1c]
+0x004016EF: push     0
+0x004016F1: neg      eax
+0x004016F3: sbb      eax, eax
+0x004016F5: and      eax, edi
+0x004016F7: push     eax
+0x004016F8: push     0x27
+0x004016FA: push     ecx
+0x004016FB: call     dword ptr [0x4173d8]
+0x00401701: mov      edi, dword ptr [0x4173c0]
+0x00401707: push     0xb
+0x00401709: call     edi
+0x0040170B: push     0xc
+0x0040170D: mov      ebx, eax
+0x0040170F: call     edi
+0x00401711: mov      edi, eax
+0x00401713: mov      eax, dword ptr [esi + 0x1c]
+0x00401716: lea      edx, [esp + 0xc]
+0x0040171A: push     edx
+0x0040171B: push     eax
+0x0040171C: call     dword ptr [0x4173c4]
+0x00401722: mov      ecx, dword ptr [esi + 0x47c]
+0x00401728: mov      eax, dword ptr [esp + 0x18]
+0x0040172C: push     ecx
+0x0040172D: mov      ecx, dword ptr [esp + 0x14]
+0x00401731: sub      eax, ecx
+0x00401733: sub      eax, edi
+0x00401735: inc      eax
+0x00401736: cdq      
+0x00401737: sub      eax, edx
+0x00401739: mov      edx, dword ptr [esp + 0x10]
+0x0040173D: sar      eax, 1
+0x0040173F: push     eax
+0x00401740: mov      eax, dword ptr [esp + 0x1c]
+0x00401744: sub      eax, edx
+0x00401746: sub      eax, ebx
+0x00401748: inc      eax
+0x00401749: cdq      
+0x0040174A: sub      eax, edx
+0x0040174C: mov      edx, dword ptr [esp + 0x28]
+0x00401750: sar      eax, 1
+0x00401752: push     eax
+0x00401753: push     edx
+0x00401754: call     dword ptr [0x4173c8]
+0x0040175A: lea      ecx, [esp + 0x1c]
+0x0040175E: call     0x413a5d
+0x00401763: pop      edi
+0x00401764: pop      ebx
+0x00401765: pop      esi
+0x00401766: add      esp, 0x64
+0x00401769: ret      
+0x0040176A: mov      ecx, esi
+0x0040176C: call     0x4102ed
+0x00401771: pop      esi
+0x00401772: add      esp, 0x64
+0x00401775: ret      
+0x00401776: nop      
+0x00401777: nop      
+0x00401778: nop      
+0x00401779: nop      
+0x0040177A: nop      
+0x0040177B: nop      
+0x0040177C: nop      
+0x0040177D: nop      
+0x0040177E: nop      
+0x0040177F: nop      
+0x00401780: mov      eax, dword ptr [ecx + 0x47c]
+0x00401786: ret      
+0x00401787: nop      
+0x00401788: nop      
+0x00401789: nop      
+0x0040178A: nop      
+0x0040178B: nop      
+0x0040178C: nop      
+0x0040178D: nop      
+0x0040178E: nop      
+0x0040178F: nop      
+0x00401790: push     ebx
+0x00401791: push     ebp
+0x00401792: mov      ebx, ecx
+0x00401794: push     esi
+0x00401795: push     edi
+0x00401796: xor      edi, edi
+0x00401798: lea      esi, [ebx + 0x7c]
+0x0040179B: push     8
+0x0040179D: push     edi
+0x0040179E: mov      ecx, ebx
+0x004017A0: call     0x4017f0
+0x004017A5: shl      eax, 0x18
+0x004017A8: mov      dword ptr [esi], eax
+0x004017AA: mov      edx, 8
+0x004017AF: mov      ebp, eax
+0x004017B1: mov      ecx, ebp
+0x004017B3: mov      eax, ecx
+0x004017B5: and      eax, 0x80000000
+0x004017BA: neg      eax
+0x004017BC: sbb      eax, eax
+0x004017BE: add      ecx, ecx
+0x004017C0: and      eax, 0x4c11db7
+0x004017C5: xor      eax, ecx
+0x004017C7: dec      edx
+0x004017C8: mov      ebp, eax
+0x004017CA: jne      0x4017b1
+0x004017CC: push     0x20
+0x004017CE: push     eax
+0x004017CF: mov      ecx, ebx
+0x004017D1: mov      dword ptr [esi], ebp
+0x004017D3: call     0x4017f0
+0x004017D8: mov      dword ptr [esi], eax
+0x004017DA: inc      edi
+0x004017DB: add      esi, 4
+0x004017DE: cmp      edi, 0xff
+0x004017E4: jle      0x40179b
+0x004017E6: pop      edi
+0x004017E7: pop      esi
+0x004017E8: pop      ebp
+0x004017E9: pop      ebx
+0x004017EA: ret      
+0x004017EB: nop      
+0x004017EC: nop      
+0x004017ED: nop      
+0x004017EE: nop      
+0x004017EF: nop      
+0x004017F0: movsx    ecx, byte ptr [esp + 8]
+0x004017F5: xor      eax, eax
+0x004017F7: lea      edx, [ecx + 1]
+0x004017FA: cmp      edx, 1
+0x004017FD: jle      0x40181f
+0x004017FF: push     esi
+0x00401800: lea      esi, [edx - 1]
+0x00401803: mov      edx, dword ptr [esp + 8]
+0x00401807: push     edi
+0x00401808: dec      ecx
+0x00401809: test     dl, 1
+0x0040180C: je       0x401817
+0x0040180E: mov      edi, 1
+0x00401813: shl      edi, cl
+0x00401815: or       eax, edi
+0x00401817: shr      edx, 1
+0x00401819: dec      ecx
+0x0040181A: dec      esi
+0x0040181B: jne      0x401809
+0x0040181D: pop      edi
+0x0040181E: pop      esi
+0x0040181F: ret      8
+0x00401822: nop      
+0x00401823: nop      
+0x00401824: nop      
+0x00401825: nop      
+0x00401826: nop      
+0x00401827: nop      
+0x00401828: nop      
+0x00401829: nop      
+0x0040182A: nop      
+0x0040182B: nop      
+0x0040182C: nop      
+0x0040182D: nop      
+0x0040182E: nop      
+0x0040182F: nop      
+0x00401830: push     -1
+0x00401832: push     0x41627c
+0x00401837: mov      eax, dword ptr fs:[0]
+0x0040183D: push     eax
+0x0040183E: mov      dword ptr fs:[0], esp
+0x00401845: sub      esp, 0x1fc
+0x0040184B: push     esi
+0x0040184C: mov      esi, ecx
+0x0040184E: push     esi
+0x0040184F: push     0x41d12c
+0x00401854: push     4
+0x00401856: push     0x41d120
+0x0040185B: push     0
+0x0040185D: push     1
+0x0040185F: lea      ecx, [esp + 0x20]
+0x00401863: call     0x40d962
+0x00401868: lea      ecx, [esp + 8]
+0x0040186C: mov      dword ptr [esp + 0x208], 0
+0x00401877: call     0x40dac4
+0x0040187C: cmp      eax, 1
+0x0040187F: je       0x4018c2
+0x00401881: lea      ecx, [esp + 0xb4]
+0x00401888: mov      dword ptr [esp + 0x208], 1
+0x00401893: call     0x40fbe5
+0x00401898: lea      ecx, [esp + 8]
+0x0040189C: mov      dword ptr [esp + 0x208], 0xffffffff
+0x004018A7: call     0x40f240
+0x004018AC: pop      esi
+0x004018AD: mov      ecx, dword ptr [esp + 0x1fc]
+0x004018B4: mov      dword ptr fs:[0], ecx
+0x004018BB: add      esp, 0x208
+0x004018C1: ret      
+0x004018C2: push     edi
+0x004018C3: push     0x41d0e4
+0x004018C8: lea      ecx, [esi + 0x5c]
+0x004018CB: call     0x40fcde
+0x004018D0: push     0x41d0e4
+0x004018D5: lea      ecx, [esi + 0x68]
+0x004018D8: call     0x40fcde
+0x004018DD: lea      eax, [esp + 8]
+0x004018E1: lea      ecx, [esp + 0xc]
+0x004018E5: push     eax
+0x004018E6: call     0x40db9f
+0x004018EB: lea      edi, [esi + 0x60]
+0x004018EE: push     eax
+0x004018EF: mov      ecx, edi
+0x004018F1: mov      byte ptr [esp + 0x210], 2
+0x004018F9: call     0x40fc8e
+0x004018FE: lea      ecx, [esp + 8]
+0x00401902: mov      byte ptr [esp + 0x20c], 0
+0x0040190A: call     0x40fbe5
+0x0040190F: push     edi
+0x00401910: lea      ecx, [esi + 0x6c]
+0x00401913: call     0x40fc8e
+0x00401918: push     0x41d0fc
+0x0040191D: lea      ecx, [esi + 0x78]
+0x00401920: call     0x40fcde
+0x00401925: push     0
+0x00401927: mov      ecx, esi
+0x00401929: call     0x411fcf
+0x0040192E: lea      ecx, [esp + 0xb8]
+0x00401935: mov      dword ptr [esp + 0x20c], 3
+
+=== SHA1 constant 0x67452301 sites ===
+  offset 0x1EF8

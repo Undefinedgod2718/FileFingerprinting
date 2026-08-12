@@ -1,0 +1,38 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+
+    <IsPackable>false</IsPackable>
+    <IsTestProject>true</IsTestProject>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="coverlet.collector" Version="6.0.0" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.8.0" />
+    <PackageReference Include="xunit" Version="2.5.3" />
+    <PackageReference Include="xunit.runner.visualstudio" Version="2.5.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Using Include="Xunit" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\src\TpFileM.Core\TpFileM.Core.csproj" />
+  </ItemGroup>
+
+  <Target Name="BuildLegacyShaCli" BeforeTargets="Build">
+    <Exec Command="dotnet publish &quot;$(MSBuildThisFileDirectory)..\..\src\TpFileM.LegacySha.Cli\TpFileM.LegacySha.Cli.csproj&quot; -c $(Configuration) -r win-x86 --self-contained true -p:PublishSingleFile=true -o &quot;$(MSBuildThisFileDirectory)..\..\src\TpFileM.LegacySha.Cli\bin\$(Configuration)\net10.0\win-x86\publish&quot;" />
+  </Target>
+
+  <Target Name="CopyLegacyShaCli" AfterTargets="Build">
+    <Copy
+      SourceFiles="$(MSBuildThisFileDirectory)..\..\src\TpFileM.LegacySha.Cli\bin\$(Configuration)\net10.0\win-x86\publish\TpFileM.LegacySha.Cli.exe"
+      DestinationFiles="$(OutputPath)TpFileM.LegacySha.Cli.exe"
+      SkipUnchangedFiles="true" />
+  </Target>
+
+</Project>

@@ -1,0 +1,22 @@
+﻿[
+    {
+        "file":  "test.bin",
+        "path":  "D:\\Program_Coding\\Q_Test\\tpfilem-modern\\tools\\fixtures\\test.bin",
+        "size":  4
+    },
+    {
+        "file":  "empty.bin",
+        "path":  "D:\\Program_Coding\\Q_Test\\tpfilem-modern\\tools\\fixtures\\empty.bin",
+        "size":  0
+    },
+    {
+        "file":  "digits.bin",
+        "path":  "D:\\Program_Coding\\Q_Test\\tpfilem-modern\\tools\\fixtures\\digits.bin",
+        "size":  9
+    },
+    {
+        "file":  "seq16.bin",
+        "path":  "D:\\Program_Coding\\Q_Test\\tpfilem-modern\\tools\\fixtures\\seq16.bin",
+        "size":  16
+    }
+]
