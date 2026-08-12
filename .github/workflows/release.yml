@@ -1,0 +1,47 @@
+name: Release and Update (Velopack)
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+jobs:
+  build:
+    runs-on: windows-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+        
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '10.0.x'
+          
+      - name: Install Velopack CLI (vpk)
+        run: dotnet tool install -g vpk
+
+      - name: Build and Publish CLI Helper
+        run: |
+          dotnet publish src/TpFileM.LegacySha.Cli/TpFileM.LegacySha.Cli.csproj -c Release -r win-x86 --self-contained true -p:PublishSingleFile=true -o publish/vpk-staging
+          
+      - name: Build and Publish App & MCP
+        run: |
+          dotnet publish src/TpFileM.App/TpFileM.App.csproj -c Release -r win-x64 --self-contained -p:PublishSingleFile=false -o publish/vpk-staging
+          dotnet publish src/TpFileM.Mcp/TpFileM.Mcp.csproj -c Release -r win-x64 --self-contained -p:PublishSingleFile=true -o publish/vpk-staging
+          Copy-Item publish/vpk-staging/TpFileM.Mcp.exe publish/vpk-staging/TpFileM.Mcp.exe -Force
+          Copy-Item publish/vpk-staging/TpFileM.LegacySha.Cli.exe publish/vpk-staging/TpFileM.LegacySha.Cli.exe -Force
+
+      - name: Get Version
+        id: get_version
+        run: echo "VERSION=${GITHUB_REF_NAME#v}" >> $env:GITHUB_OUTPUT
+
+      - name: Pack with Velopack
+        run: |
+          vpk pack -u FileFingerprinting -v ${{ steps.get_version.outputs.VERSION }} -p publish/vpk-staging -e FileFingerprinting.exe -o publish/Releases
+          
+      - name: Upload Release
+        uses: softprops/action-gh-release@v2
+        with:
+          files: publish/Releases/*
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
