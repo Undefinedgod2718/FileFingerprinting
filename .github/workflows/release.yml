@@ -28,8 +28,6 @@ jobs:
         run: |
           dotnet publish src/TpFileM.App/TpFileM.App.csproj -c Release -r win-x64 --self-contained -p:PublishSingleFile=false -o publish/vpk-staging
           dotnet publish src/TpFileM.Mcp/TpFileM.Mcp.csproj -c Release -r win-x64 --self-contained -p:PublishSingleFile=true -o publish/vpk-staging
-          Copy-Item publish/vpk-staging/TpFileM.Mcp.exe publish/vpk-staging/TpFileM.Mcp.exe -Force
-          Copy-Item publish/vpk-staging/TpFileM.LegacySha.Cli.exe publish/vpk-staging/TpFileM.LegacySha.Cli.exe -Force
 
       - name: Get Version
         id: get_version
