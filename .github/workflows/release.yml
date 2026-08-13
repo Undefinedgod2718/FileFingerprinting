@@ -31,7 +31,7 @@ jobs:
 
       - name: Get Version
         id: get_version
-        run: echo "VERSION=${GITHUB_REF_NAME#v}" >> $env:GITHUB_OUTPUT
+        run: echo "VERSION=$($env:GITHUB_REF_NAME.TrimStart('v'))" >> $env:GITHUB_OUTPUT
 
       - name: Pack with Velopack
         run: |
