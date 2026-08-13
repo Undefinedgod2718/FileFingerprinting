@@ -26,9 +26,11 @@
                 </Grid>
                 <StackPanel Grid.Column="2" Orientation="Horizontal" VerticalAlignment="Center">
                     <Grid Margin="0,0,8,0" VerticalAlignment="Center">
-                        <TextBlock x:Name="KeyModeLabelShadow" Style="{StaticResource McWhitePixelShadow}"
-                                   FontSize="19" Margin="1,1,0,0"/>
-                        <TextBlock x:Name="KeyModeLabel" Style="{StaticResource McHeaderKeyModeLabel}"/>
+                        <TextBlock x:Name="KeyModeLabel" Style="{StaticResource McHeaderKeyModeLabel}">
+                            <TextBlock.Effect>
+                                <DropShadowEffect Color="#3F3F3F" BlurRadius="0" ShadowDepth="1.5" Direction="315" Opacity="1"/>
+                            </TextBlock.Effect>
+                        </TextBlock>
                     </Grid>
                     <ComboBox x:Name="KeyModeCombo" Style="{StaticResource McKeyModeCombo}"
                               Width="280" SelectionChanged="KeyModeCombo_OnSelectionChanged"/>

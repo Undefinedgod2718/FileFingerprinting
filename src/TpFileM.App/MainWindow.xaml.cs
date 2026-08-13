@@ -1,4 +1,4 @@
-﻿using System.Globalization;
+using System.Globalization;
 using System.IO;
 using System.Windows;
 using System.Windows.Automation;
@@ -59,7 +59,6 @@ public partial class MainWindow : Window
         TitleShadowText.Text = _loc.Get("Window_Title");
         TitleShadowDeepText.Text = _loc.Get("Window_Title");
         KeyModeLabel.Text = _loc.Get("Label_KeyMode");
-        KeyModeLabelShadow.Text = _loc.Get("Label_KeyMode");
         FileNameLabel.Text = _loc.Get("Label_FileName");
         CrcKeyLabel.Text = _loc.Get("Label_CrcKey");
         ShaKeyLabel.Text = _loc.Get("Label_ShaKey");

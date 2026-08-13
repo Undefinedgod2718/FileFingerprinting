@@ -65,7 +65,7 @@
             <TextBlock x:Name="UpdateLabel" Grid.Column="0" VerticalAlignment="Center" 
                        Style="{StaticResource McFieldLabel}"/>
             <TextBlock x:Name="UpdateStatusText" Grid.Column="1" VerticalAlignment="Center" 
-                       Style="{StaticResource McStatusText}" Foreground="{StaticResource McTileEmerald}"/>
+                       Style="{StaticResource McStatusText}" Foreground="{StaticResource McSuccessTextBrush}"/>
             <Button x:Name="CheckUpdateButton" Grid.Column="2" MinWidth="90" Click="CheckUpdate_Click"/>
         </Grid>
 

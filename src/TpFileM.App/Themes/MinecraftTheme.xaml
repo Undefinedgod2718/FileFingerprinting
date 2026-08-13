@@ -23,7 +23,10 @@
     <SolidColorBrush x:Key="McStoneLightBrush" Color="{StaticResource McStoneLight}"/>
     <SolidColorBrush x:Key="McStoneDarkBrush" Color="{StaticResource McStoneDark}"/>
     <SolidColorBrush x:Key="McSpruceBorderBrush" Color="{StaticResource McSpruceBorder}"/>
-    <SolidColorBrush x:Key="McPixelShadowBrush" Color="{StaticResource McPixelShadow}"/>
+    <SolidColorBrush x:Key="McPixelShadowBrush" Color="#3F3F3F"/>
+    
+    <!-- New brush for success status text (high contrast on grey) -->
+    <SolidColorBrush x:Key="McSuccessTextBrush" Color="#006400"/>
 
     <ImageBrush x:Key="McTileConcreteLight" ImageSource="/Assets/Textures/concrete_light.png"
                 TileMode="Tile" Viewport="0,0,16,16" ViewportUnits="Absolute" Stretch="None"/>
@@ -106,6 +109,7 @@
         <Setter Property="FontSize" Value="18"/>
         <Setter Property="Foreground" Value="#333333"/>
         <Setter Property="Margin" Value="2,4,0,0"/>
+        <Setter Property="TextOptions.TextRenderingMode" Value="Grayscale"/>
     </Style>
 
     <Style x:Key="McDataField" TargetType="TextBox">
@@ -152,19 +156,16 @@
                                 SnapsToDevicePixels="True">
                             <Grid HorizontalAlignment="Center" VerticalAlignment="Center">
                                 <TextBlock Text="{TemplateBinding Content}"
-                                           Style="{StaticResource McWhitePixelShadow}"
-                                           FontSize="{TemplateBinding FontSize}"
-                                           Margin="1,1,0,0"
-                                           TextWrapping="Wrap"
-                                           TextAlignment="Center"/>
-                                <TextBlock Text="{TemplateBinding Content}"
                                            Foreground="#FFFFFF"
                                            FontFamily="{TemplateBinding FontFamily}"
                                            FontSize="{TemplateBinding FontSize}"
                                            FontWeight="{TemplateBinding FontWeight}"
                                            TextWrapping="Wrap"
-                                           TextAlignment="Center"
-                                           TextOptions.TextFormattingMode="Display"/>
+                                           TextAlignment="Center">
+                                    <TextBlock.Effect>
+                                        <DropShadowEffect Color="#3F3F3F" BlurRadius="0" ShadowDepth="1.5" Direction="315" Opacity="1"/>
+                                    </TextBlock.Effect>
+                                </TextBlock>
                             </Grid>
                         </Border>
                     </Border>
@@ -231,14 +232,15 @@
                                             </Grid.ColumnDefinitions>
                                             <Grid Grid.Column="0" Margin="10,4,4,4" VerticalAlignment="Center">
                                                 <TextBlock Text="{Binding SelectionBoxItem, RelativeSource={RelativeSource AncestorType=ComboBox}}"
-                                                           Style="{StaticResource McWhitePixelShadow}"
+                                                           Foreground="#FFFFFF"
+                                                           FontFamily="{TemplateBinding FontFamily}"
                                                            FontSize="19"
-                                                           Margin="1,1,0,0"
-                                                           TextTrimming="CharacterEllipsis"/>
-                                                <TextBlock Text="{Binding SelectionBoxItem, RelativeSource={RelativeSource AncestorType=ComboBox}}"
-                                                           Style="{StaticResource McWhitePixelText}"
-                                                           FontSize="19"
-                                                           TextTrimming="CharacterEllipsis"/>
+                                                           FontWeight="Bold"
+                                                           TextTrimming="CharacterEllipsis">
+                                                    <TextBlock.Effect>
+                                                        <DropShadowEffect Color="#3F3F3F" BlurRadius="0" ShadowDepth="1.5" Direction="315" Opacity="1"/>
+                                                    </TextBlock.Effect>
+                                                </TextBlock>
                                             </Grid>
                                             <Path Grid.Column="1" Data="M0,0 L12,0 L6,8 Z"
                                                   Fill="White" Stretch="Uniform"
