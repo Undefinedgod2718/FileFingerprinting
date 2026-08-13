@@ -4,46 +4,101 @@ namespace TpFileM.LegacySha.Cli;
 
 internal static class Program
 {
+    private static void BackupToShared(string source, string dest, string sharedDir)
+    {
+        try
+        {
+            if (!Directory.Exists(sharedDir))
+            {
+                Directory.CreateDirectory(sharedDir);
+            }
+            if (!File.Exists(dest))
+            {
+                File.Copy(source, dest, overwrite: false);
+            }
+        }
+        catch (Exception ex)
+        {
+            Console.Error.WriteLine($"Warning: Failed to backup legacy core to shared directory: {ex.Message}");
+        }
+    }
+
     private static string ResolveLegacyExe()
     {
+        string localAppData = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);
+        string sharedDir = Path.Combine(localAppData, "FileFingerprinting", "Shared");
+        string sharedExe = Path.Combine(sharedDir, "LegacyCore.exe");
+
+        // 1. Check Shared first
+        if (File.Exists(sharedExe))
+        {
+            return sharedExe;
+        }
+
+        // 2. Check current directory (and proactive backup)
         string installed = Path.Combine(AppContext.BaseDirectory, "runtime", "LegacyCore.exe");
         if (File.Exists(installed))
         {
+            BackupToShared(installed, sharedExe, sharedDir);
             return installed;
         }
 
+        // 3. Environment variable (dev)
         string? fromEnv = Environment.GetEnvironmentVariable("TPFILEM_LEGACY_EXE");
-        if (!string.IsNullOrWhiteSpace(fromEnv))
+        if (!string.IsNullOrWhiteSpace(fromEnv) && File.Exists(fromEnv))
         {
             return fromEnv;
         }
 
+        // 4. Flat structure
         string flat = Path.Combine(AppContext.BaseDirectory, "TPFileM.exe");
         if (File.Exists(flat))
         {
+            BackupToShared(flat, sharedExe, sharedDir);
             return flat;
         }
 
-        var dir = new DirectoryInfo(AppContext.BaseDirectory);
-        while (dir is not null)
+        // 5. Velopack rescue scan: look in adjacent app-* folders
+        var baseDir = new DirectoryInfo(AppContext.BaseDirectory);
+        if (baseDir.Parent != null)
         {
-            var candidate = Path.Combine(dir.FullName, "TPFileM", "TPFileM.exe");
-            if (File.Exists(candidate))
+            var appDirs = baseDir.Parent.GetDirectories("app-*")
+                .OrderByDescending(d => d.Name)
+                .ToList();
+            
+            foreach (var appDir in appDirs)
             {
-                return candidate;
+                var candidate = Path.Combine(appDir.FullName, "runtime", "LegacyCore.exe");
+                if (File.Exists(candidate))
+                {
+                    BackupToShared(candidate, sharedExe, sharedDir);
+                    return sharedExe;
+                }
+                
+                candidate = Path.Combine(appDir.FullName, "TPFileM.exe");
+                if (File.Exists(candidate))
+                {
+                    BackupToShared(candidate, sharedExe, sharedDir);
+                    return sharedExe;
+                }
             }
+        }
 
-            candidate = Path.GetFullPath(Path.Combine(dir.FullName, "..", "TPFileM", "TPFileM.exe"));
-            if (File.Exists(candidate))
-            {
-                return candidate;
-            }
+        // 6. Final fallback for legacy dev paths up the tree
+        var dirUp = new DirectoryInfo(AppContext.BaseDirectory);
+        while (dirUp != null)
+        {
+            var candidate = Path.Combine(dirUp.FullName, "TPFileM", "TPFileM.exe");
+            if (File.Exists(candidate)) return candidate;
 
-            dir = dir.Parent;
+            candidate = Path.GetFullPath(Path.Combine(dirUp.FullName, "..", "TPFileM", "TPFileM.exe"));
+            if (File.Exists(candidate)) return candidate;
+
+            dirUp = dirUp.Parent;
         }
 
         throw new FileNotFoundException(
-            "Legacy SHA runtime not found. Expected runtime\\LegacyCore.exe beside the app, or set TPFILEM_LEGACY_EXE (dev).");
+            $"Legacy SHA runtime not found. Please ensure LegacyCore.exe exists in {sharedDir}");
     }
 
     public static int Main(string[] args)

@@ -63,8 +63,16 @@ public static class LegacySha1
 
     private static byte[] ReadDigest(Process process)
     {
-        string line = process.StandardOutput.ReadLine()
-            ?? throw new InvalidOperationException("Legacy SHA helper produced no output.");
+        string? line = process.StandardOutput.ReadLine();
+        if (line == null)
+        {
+            process.WaitForExit();
+            string err = process.StandardError.ReadToEnd();
+            throw new InvalidOperationException(string.IsNullOrWhiteSpace(err) 
+                ? "Legacy SHA helper produced no output and no error message." 
+                : $"Legacy SHA helper failed: {err}");
+        }
+
         process.WaitForExit();
         if (process.ExitCode != 0)
         {
